@@ -4,6 +4,7 @@
   "description": "Playwright end-to-end tests for localcoding.us",
   "scripts": {
     "test": "playwright test",
+    "test:debug": "playwright test --headed",
     "report": "playwright show-report"
   },
   "keywords": [],
@@ -11,5 +12,8 @@
   "license": "ISC",
   "dependencies": {
     "@playwright/test": "1.37.1"
+  },
+  "devDependencies": {
+    "prettier": "3.0.3"
   }
 }
