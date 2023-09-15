@@ -11,8 +11,7 @@
   "author": "Alekseeva Alesya",
   "license": "ISC",
   "dependencies": {
-    "@playwright/test": "1.37.1",
-    "dotenv": "16.3.1"
+    "@playwright/test": "1.37.1"
   },
   "devDependencies": {
     "prettier": "3.0.3"
