@@ -1,13 +1,10 @@
 import { test, expect } from '@playwright/test'
-
+import {login} from "../common/log-in";
 test.describe('Common', () => {
+    test.beforeEach(async ({page}) => {
+       await login(page, 'annalesh@mail.ru', '05122006Anna')
+    })
     test('Navigation', async ({page}) => {
-        await page.goto('https://coding.pasv.us/user/login')
-
-        await page.locator('#normal_login_email').fill('annalesh@mail.ru')
-        await page.locator('#normal_login_password').fill('05122006Anna')
-        await page.locator('button[type="submit"]').click()
-
         await page.getByTestId('topmenu-Курсы').click()
         await expect(page).toHaveURL('https://coding.pasv.us/course')
         await expect(page.getByText('Курсы программирования и тестирования')).toBeVisible()
@@ -23,8 +20,5 @@ test.describe('Common', () => {
         await page.getByTestId('topmenu-Дневник').click()
         await expect(page).toHaveURL('https://coding.pasv.us/diary?page=1')
         await expect(page.getByText('Daily reports')).toBeVisible()
-
     })
 })
-
-
