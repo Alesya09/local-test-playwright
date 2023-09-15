@@ -1,14 +1,15 @@
 {
-  "name": "local-test-pw",
+  "name": "local-tests-pw",
   "version": "1.0.0",
   "description": "Playwright end-to-end tests for localcoding.us",
   "scripts": {
     "test": "playwright test",
     "test:debug": "playwright test --headed",
-    "report": "playwright show-report"
+    "report": "playwright show-report",
+    "format": "prettier ./ --write --list-different",
+    "lint": "prettier ./ --check"
   },
-  "keywords": [],
-  "author": "Alekseeva Alesya",
+  "author": "Dmitrii Bormotov",
   "license": "ISC",
   "dependencies": {
     "@playwright/test": "1.37.1",
