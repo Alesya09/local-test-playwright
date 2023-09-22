@@ -9,13 +9,14 @@
     "format": "prettier ./ --write --list-different",
     "lint": "prettier ./ --check"
   },
-  "author": "Dmitrii Bormotov",
+  "author": "Alesya Alekseeva",
   "license": "ISC",
   "dependencies": {
-    "@playwright/test": "1.37.1",
+    "@playwright/test": "1.38.1",
     "dotenv": "16.3.1"
   },
   "devDependencies": {
+    "@types/node": "^20.6.3",
     "prettier": "3.0.3"
   }
 }
