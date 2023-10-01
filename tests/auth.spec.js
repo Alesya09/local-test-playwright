@@ -1,25 +1,24 @@
-const {test, expect} = require('@playwright/test')
+import {test, expect} from '../common/test'
 
 test.describe('Authentication & Authorization', () => {
-  test('Sign in with existing credentials', async ({page}) => {
-    await page.goto('/user/login')
-
-    await page.locator('#normal_login_email').fill(process.env.EMAIL)
-    await page.locator('#normal_login_password').fill(process.env.PASSWORD)
-    await page.locator('button[type="submit"]').click()
-
-    await expect(page.locator('.ant-avatar-square')).toBeVisible
+  test.beforeEach(async ({loginPage}) => {
+    await loginPage.open()
   })
 
-  test('Sign in with negative credentials password', async ({page}) => {
-    await page.goto('https://coding.pasv.us/user/login')
+  test('Sign in with existing credentials', async ({page, loginPage}) => {
+    await loginPage.input.email.fill(process.env.EMAIL)
+    await loginPage.input.password.fill(process.env.PASSWORD)
+    await loginPage.button.submit.click()
 
-    await page.locator('#normal_login_email').fill(process.env.EMAIL)
-    await page.locator('#normal_login_password').fill('invalid')
-    await page.locator('button[type="submit"]').click()
+    await expect(page.locator('.ant-avatar-square')).toBeVisible()
+  })
 
-    const toast = page.locator('.ant-notification-notice-message')
-    await expect(toast).toBeVisible()
-    await expect(toast).toHaveText('User login. Fail')
+  test('Sign in with not existing credentials', async ({loginPage}) => {
+    await loginPage.input.email.fill('invalid@example.com')
+    await loginPage.input.password.fill('invalid')
+    await loginPage.button.submit.click()
+
+    await expect(loginPage.toast).toBeVisible()
+    await expect(loginPage.toast).toHaveText('User login. Fail')
   })
 })
