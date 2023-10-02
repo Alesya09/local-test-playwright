@@ -1,8 +1,9 @@
 import {test, expect} from '../common/test'
-import {login} from '../common/log-in'
+import {logInWithApi} from '../common/log-in-with-api'
+
 test.describe('Common', () => {
-  test.beforeEach(async ({page}) => {
-    await login(page, process.env.EMAIL, process.env.PASSWORD)
+  test.beforeEach(async ({page, request, context}) => {
+    await logInWithApi(page, request, context, process.env.EMAIL, process.env.PASSWORD)
   })
 
   test('Navigation', async ({page, loginPage}) => {
